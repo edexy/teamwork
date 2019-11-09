@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+require('dotenv').config()
+
 
 const v1UserRoutes = require('./v1/routes/user');
-// const userRoutes  =  require('./routes/user');
+const v1GifRoutes = require('./v1/routes/gif');
 const app = express();
 
 app.use((req, res, next) => {
@@ -22,7 +24,9 @@ app.use((req, res, next) => {
 // app.use('/api/auth', userRoutes);
 
 
-app.use('/api/v1', v1UserRoutes);
+app.use('/api/v1/auth', v1UserRoutes);
+app.use('/api/v1/gifs', v1GifRoutes);
+
 //router.use('api/v2', v1Routes);
 
 
