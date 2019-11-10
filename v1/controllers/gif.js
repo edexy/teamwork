@@ -62,6 +62,77 @@ exports.createGif = (req, res, next) => {
     
 }
 
+exports.createComment = (req, res, next) => {
+
+    const data = {
+        comment: req.body.comment,
+        article_id: req.params._id,
+        user_id: req.body.userId,
+        created_at: new Date()
+    };
+
+
+    //save the article details to db 
+    pool.connect((err, client, done) => {
+        let query = 'INSERT INTO comments (comment, gif_id, user_id, created_at) VALUES($1,$2,$3,$4) RETURNING *';
+        let values = [data.comment, data.article_id, data.user_id, data.created_at];
+        client.query(query, values).then((result) => {
+            done();
+            client
+                .query('SELECT * FROM gifs WHERE id=$1', [result.rows[0].gif_id])
+                .then((resp) => {
+                    const re = {
+                        message: 'Comment successfully created',
+                        gifTitle: resp.rows[0].title,
+                        createdOn: result.rows[0].created_at,
+                        comment: result.rows[0].comment
+
+                    };
+
+                    return res.status(201).json({
+                        status: 'success',
+                        data: re,
+
+
+                    });
+                }).catch(err => {
+                    return res.status(400).json({ err });
+                });
+        }).catch(error => {
+            return res.status(400).json({ error });
+        });
+    });
+}
+
+exports.getOneGif = (req, res, next) => {
+
+    //save the article details to db 
+    let _id = req.params._id;
+    pool.connect((err, client, done) => {
+        client.query('SELECT * FROM gifs WHERE id=$1', [_id]).then((result) => {
+            done();
+            client
+                .query('SELECT id as comment_id, comment, user_id as author_id FROM comments WHERE gif_id=$1', [result.rows[0].id])
+                .then((resp) => {
+
+                    let gifs = result.rows[0];
+                    gifs.comments = resp.rows;
+
+                    return res.status(201).json({
+                        status: 'success',
+                        data: gifs,
+
+
+                    });
+                }).catch(err => {
+                    return res.status(400).json({ err });
+                });
+        }).catch(error => {
+            return res.status(400).json({ error });
+        });
+    });
+}
+
 
 exports.deleteGif = (req, res, next) => {
 

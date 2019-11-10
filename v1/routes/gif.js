@@ -8,6 +8,8 @@ const multipartMiddleware = multipart();
 
 
 router.post('/', multipartMiddleware, userAuth, gifCtrl.createGif);
+router.get('/:_id', userAuth, gifCtrl.getOneGif);
+router.post('/:_id/comment', userAuth, gifCtrl.createComment);
 router.delete('/:_id', userAuth, gifCtrl.deleteGif);
 //router.post('/auth/signin', userCtrl.signin);
 

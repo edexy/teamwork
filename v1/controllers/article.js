@@ -180,4 +180,33 @@ exports.createComment = (req, res, next) => {
         });
     });
 }
+
+exports.getOneArticle = (req, res, next) => {
+
+    //save the article details to db 
+    let _id = req.params._id;
+    pool.connect((err, client, done) => {
+        client.query('SELECT * FROM articles WHERE id=$1', [_id]).then((result) => {
+            done();
+            client
+                .query('SELECT id as commen_id, comment, user_id as author_id FROM comments WHERE article_id=$1', [result.rows[0].id])
+                .then((resp) => {
+
+                    let articles = result.rows[0];
+                    articles.comments = resp.rows;
+
+                    return res.status(201).json({
+                        status: 'success',
+                        data: articles,
+
+
+                    });
+                }).catch(err => {
+                    return res.status(400).json({ err });
+                });
+        }).catch(error => {
+            return res.status(400).json({ error });
+        });
+    });
+}
         
