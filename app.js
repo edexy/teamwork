@@ -7,6 +7,9 @@ require('dotenv').config()
 
 const v1UserRoutes = require('./v1/routes/user');
 const v1GifRoutes = require('./v1/routes/gif');
+const v1ArticleRoutes = require('./v1/routes/article');
+const v1Feed = require('./v1/routes/feed');
+
 const app = express();
 
 app.use((req, res, next) => {
@@ -26,6 +29,9 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/auth', v1UserRoutes);
 app.use('/api/v1/gifs', v1GifRoutes);
+app.use('/api/v1/articles', v1ArticleRoutes);
+app.use('/api/v1/feed', v1ArticleRoutes);
+
 
 //router.use('api/v2', v1Routes);
 
