@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edexy/devcwithandela-api.git"
+    "url": "git+https://github.com/edexy/teamwork.git"
   },
   "author": "Peter Edoja",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/edexy/devcwithandela-api/issues"
+    "url": "https://github.com/edexy/teamwork/issues"
   },
-  "homepage": "https://github.com/edexy/devcwithandela-api#readme",
+  "homepage": "https://github.com/edexy/teamwork#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
