@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/auth', v1UserRoutes);
 app.use('/api/v1/gifs', v1GifRoutes);
 app.use('/api/v1/articles', v1ArticleRoutes);
-app.use('/api/v1/feed', v1ArticleRoutes);
+app.use('/api/v1/feed', v1Feed);
 
 
 //router.use('api/v2', v1Routes);

@@ -6,6 +6,7 @@ const userAuth = require('../../middleware/auth/user');
 
 
 router.post('/', userAuth, articleCtrl.createArticle);
+router.get('/:_id', userAuth, articleCtrl.getOneArticle);
 router.patch('/:_id', userAuth, articleCtrl.updateArticle);
 router.delete('/:_id', userAuth, articleCtrl.deleteArticle);
 router.post('/:_id/comment', userAuth, articleCtrl.createComment);

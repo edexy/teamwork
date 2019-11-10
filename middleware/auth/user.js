@@ -8,7 +8,8 @@ module.exports = (req, res, next) => {
         const userType = decodeToken.userType;
 
         //check if user have a valid id and user type  priviledges
-        if(!req.body.userId || req.body.userId != userId || userType != 2){
+        // if(!req.body.userId || req.body.userId != userId || userType != 2){
+            if(!userId || userType != 2){
             throw 'Invalid user';
         }else{
             next();
