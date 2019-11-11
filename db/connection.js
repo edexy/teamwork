@@ -15,7 +15,7 @@ const pool = new Pool({
 //   idleTimeoutMillis: 30000,
 // };
 
-const pool = new pg.Pool(config);
+//const pool = new pg.Pool(config);
 
 pool.on('connect', () => {
   console.log('connected to the Database');
