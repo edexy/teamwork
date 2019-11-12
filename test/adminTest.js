@@ -27,7 +27,7 @@ describe('POST /api/auth/create-user', function () {
                 "userId": "2"
             })
             .set('Accept', 'application/json')
-            .set('Authorization', 'Bearer ' + token)
+            // .set('Authorization', 'Bearer ' + token)
             .expect(201, done);
     });
 });
