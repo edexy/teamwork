@@ -29,7 +29,7 @@ const createUserTable = () => {
         gender VARCHAR(255)  NOT NULL,
         user_type INT   NULL,
         created_at VARCHAR(255),
-        updated_at VARCHAR(255)
+        updated_at VARCHAR(255) NULL
       )`;
 
     pool.query(queryText)
