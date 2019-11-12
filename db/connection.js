@@ -27,7 +27,7 @@ const createUserTable = () => {
         deparment VARCHAR(255)  NOT NULL,
         job_role VARCHAR(255)  NOT NULL,
         gender VARCHAR(255)  NOT NULL,
-        user_type INT(10)  DEFAULT 2,
+        user_type INT  DEFAULT 2,
         created_at VARCHAR(255),
         updated_at VARCHAR(255)
       )`;
@@ -105,9 +105,9 @@ const createCommentTable = () => {
         `CREATE TABLE IF NOT EXISTS
         comments(
           id SERIAL PRIMARY KEY,
-          article_id INT(11)  DEFAULT NULL,
-          gif_id INT(11)  DEFAULT NULL,
-          user_id INT(11)  NOT NULL,
+          article_id INT  DEFAULT NULL,
+          gif_id INT  DEFAULT NULL,
+          user_id INT  NOT NULL,
           comment TEXT  NOT NULL,
           created_at VARCHAR(255)  NOT NULL,
         )`;
