@@ -139,15 +139,12 @@ const createAllTables = () => {
 //     process.exit(0);
 // });
 
-module.exports = pool;
+//module.exports = pool;
 
-// module.exports = {
-//     createUserTable,
-//     createGifTable,
-//     createArticleTable,
-//     createAllTables,
-//     createCommentTable
+module.exports = {
+    createAllTables,
+    pool:pool
 
-// };
+};
 
 require('make-runnable');

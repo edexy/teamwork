@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const pool = require('../../db/connection');
+const pool = require('../../db/connection').pool;
 
 
 
@@ -52,7 +52,7 @@ exports.signup = (req, res, next) => {
 exports.signin = (req, res, next) => {
     let email = req.body.email;
     pool.connect((err, client, done) => {
-        client.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (error, result) => {
+        pool.query('SELECT * FROM users WHERE email = $1 LIMIT 1', [email], (error, result) => {
             done();
             if (result.rowCount < 1) {
                 return res.status(404).json({
