@@ -1,24 +1,153 @@
-const pg = require('pg');
 
-const connectionString = 'postgres://fvdnvotwgndsms:9184b8f761f1d4d682280dd084198d0c181cf0e1b2b8850957c5068938a43dc5@ec2-174-129-253-169.compute-1.amazonaws.com:5432/dcor00j4blrt0a'
+// db.js
+const { Pool } = require('pg');
 
-const pool = new pg.Pool({
-  connectionString: connectionString,
-})
-
-// const config = {
-//   user: process.env.DB_USER, //this is the db user credential
-//   database: process.env.DB_NAME,
-//   password: process.env.DB_PASS,
-//   port: 5432,
-//   max: 10, // max number of clients in the pool
-//   idleTimeoutMillis: 30000,
-// };
-
-//const pool = new pg.Pool(config);
-
-pool.on('connect', () => {
-  console.log('connected to the Database');
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL
 });
 
+pool.on('connect', () => {
+    console.log('connected to the db');
+});
+
+
+/**
+ * Create User Table
+ */
+const createUserTable = () => {
+    const queryText =
+        `CREATE TABLE IF NOT EXISTS
+      users(
+        id SERIAL PRIMARY KEY,
+        first_name VARCHAR(255)  NOT NULL,
+        last_name  VARCHAR(255)  NOT NULL,
+        email VARCHAR(255)  NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        phone VARCHAR(255)  NOT NULL,
+        deparment VARCHAR(255)  NOT NULL,
+        job_role VARCHAR(255)  NOT NULL,
+        gender VARCHAR(255)  NOT NULL,
+        user_type INT(10)  DEFAULT 2,
+        created_at VARCHAR(255),
+        updated_at VARCHAR(255)
+      )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+/**
+ * Create A Table
+ */
+const createGifTable = () => {
+    const queryText =
+        `CREATE TABLE IF NOT EXISTS
+        gifs(
+          id SERIAL PRIMARY KEY,
+          title VARCHAR(255)  NOT NULL,
+          url VARCHAR(255)  NOT NULL,
+          public_id VARCHAR(255)  NOT NULL,
+          user_id VARCHAR(255)  NOT NULL,
+          created_at VARCHAR(255)  NOT NULL,
+          updated_at VARCHAR(255)   NULL
+        )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+/**
+* Create A Table
+*/
+const createArticleTable = () => {
+    const queryText =
+        `CREATE TABLE IF NOT EXISTS
+        articles(
+          id SERIAL PRIMARY KEY,
+          title VARCHAR(255)  NOT NULL,
+          article VARCHAR(255)  NOT NULL,
+          public_id VARCHAR(255)  NOT NULL,
+          user_id VARCHAR(255)  NOT NULL,
+          created_at VARCHAR(255)  NOT NULL,
+          updated_at VARCHAR(255)   NULL
+        )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+/**
+* Create A Table
+*/
+const createCommentTable = () => {
+    const queryText =
+        `CREATE TABLE IF NOT EXISTS
+        comments(
+          id SERIAL PRIMARY KEY,
+          article_id INT(11)  DEFAULT NULL,
+          gif_id INT(11)  DEFAULT NULL,
+          user_id INT(11)  NOT NULL,
+          comment TEXT  NOT NULL,
+          created_at VARCHAR(255)  NOT NULL,
+        )`;
+
+    pool.query(queryText)
+        .then((res) => {
+            console.log(res);
+            pool.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            pool.end();
+        });
+}
+
+
+/**
+ * Create All Tables
+ */
+const createAllTables = () => {
+    createUserTable();
+    createGifTable();
+    createArticleTable();
+    createCommentTable();
+}
+
+// pool.on('remove', () => {
+//     console.log('client removed');
+//     process.exit(0);
+// });
+
 module.exports = pool;
+
+// module.exports = {
+//     createUserTable,
+//     createGifTable,
+//     createArticleTable,
+//     createAllTables,
+//     createCommentTable
+
+// };
+
+require('make-runnable');
