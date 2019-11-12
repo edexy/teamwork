@@ -134,10 +134,10 @@ const createAllTables = () => {
     createCommentTable();
 }
 
-pool.on('remove', () => {
-    console.log('client removed');
-    //process.exit(0);
-});
+// pool.on('remove', () => {
+//     console.log('client removed');
+//     //process.exit(0);
+// });
 
 //module.exports = pool;
 
