@@ -10,76 +10,8 @@ let password = (faker.internet.password()).toLowerCase();
 
 //test signin route for admin signin
 
-describe('POST  /api/v1/auth/signin', function () {
-    const authenticatedUser = request.agent(app)
-    it('respond with 404 not found /test account does not exist and it is not an admin ', function (done) {
-        request(app)
-        authenticatedUser
-            .post('/api/v1/auth/signin')
-            .send({
-                "email": email,
-                "password": password
-            })
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(404)
-            .end((err) => {
-                if (err) return done(err);
-                done();
-            });
-    })
-    it('respond with 200 created', function (done) {
-        request(app)
-        authenticatedUser
-            .post('/api/v1/auth/signin')
-            .send({
-                "email": 'edoja2012@gmail.com',
-                "password": '12345'
-            })
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .end((err) => {
-                if (err) return done(err);
-                done();
-            });
-    });
-});
-
 describe('POST /api/auth/create-user', function () {
-    var token = '';
-    before(function (done) {
-        request(app)
-            .post('/api/v1/auth/signin')
-            .send({
-                "email": 'edoja2012@gmail.com',
-                "password": '12345'
-            })
-            .set('Accept', 'application/json')
-            .end(function (err, res) {
-                var result = JSON.parse(res.text);
-                token = result.data.token;
-                done();
-            });
-    });
-    it('should not be able to create a new user /test since no token was sent', function (done) {
-        request(app)
-            .post('/api/v1/auth/create-user')
-            .send({
-                firstname: faker.name.firstName(),
-                lastname: faker.name.lastName(),
-                email: email,
-                password: password,
-                gender: 'm',
-                jobrole: faker.name.jobArea(),
-                department: 'IT',
-                address: faker.address.streetAddress()
-            })
-            .set('Accept', 'application/json')
-            .expect(403, done);
-    });
-
-
+   
     it('should be able to create a new user /test since token valid was sent', function (done) {
         request(app)
             .post('/api/v1/auth/create-user')
@@ -99,7 +31,6 @@ describe('POST /api/auth/create-user', function () {
             .expect(201, done);
     });
 });
-
 
 //test user signin after account creation
 describe('POST  /api/v1/auth/signin', function () {
