@@ -35,11 +35,11 @@ const createUserTable = () => {
     pool.query(queryText)
         .then((res) => {
             console.log(res);
-            pool.end();
+            //pool.end();
         })
         .catch((err) => {
             console.log(err);
-            pool.end();
+            //pool.end();
         });
 }
 
@@ -62,11 +62,11 @@ const createGifTable = () => {
     pool.query(queryText)
         .then((res) => {
             console.log(res);
-            pool.end();
+         //   pool.end();
         })
         .catch((err) => {
             console.log(err);
-            pool.end();
+          //  pool.end();
         });
 }
 
@@ -89,11 +89,11 @@ const createArticleTable = () => {
     pool.query(queryText)
         .then((res) => {
             console.log(res);
-            pool.end();
+           // pool.end();
         })
         .catch((err) => {
             console.log(err);
-            pool.end();
+           // pool.end();
         });
 }
 
@@ -115,11 +115,11 @@ const createCommentTable = () => {
     pool.query(queryText)
         .then((res) => {
             console.log(res);
-            pool.end();
+            //pool.end();
         })
         .catch((err) => {
             console.log(err);
-            pool.end();
+           // pool.end();
         });
 }
 
