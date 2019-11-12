@@ -23,13 +23,12 @@ const createUserTable = () => {
         last_name  VARCHAR(255)  NOT NULL,
         email VARCHAR(255)  NOT NULL,
         password VARCHAR(255) NOT NULL,
-        department VARCHAR(255)   NULL,
-        job_role VARCHAR(255)   NULL,
-        gender VARCHAR(255)   NULL,
-        address VARCHAR(255)   NULL,
-        user_type INT   NULL,
-        created_at VARCHAR(255) NULL,
-        updated_at VARCHAR(255) NULL
+        department VARCHAR(255) ,
+        job_role VARCHAR(255) ,
+        gender VARCHAR(255) ,
+        address VARCHAR(255) ,
+        user_type INT,
+        created_at VARCHAR(255)
       )`;
 
     pool.query(queryText)
