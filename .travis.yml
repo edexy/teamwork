@@ -4,6 +4,7 @@ node_js:
 services:
   - postgresql 
 before_script:
+  - export LANG=en_US.UTF-8
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql -c "CREATE USER test_user WITH PASSWORD '';" -U postgres 
   - node ./db/connection.js createAllTables
