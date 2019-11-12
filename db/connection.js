@@ -26,6 +26,7 @@ const createUserTable = () => {
         department VARCHAR(255)  NOT NULL,
         job_role VARCHAR(255)  NOT NULL,
         gender VARCHAR(255)  NOT NULL,
+        address VARCHAR(255)  NOT NULL,
         user_type INT   NULL,
         created_at VARCHAR(255),
         updated_at VARCHAR(255) NULL
