@@ -109,7 +109,7 @@ const createCommentTable = () => {
           gif_id INT  DEFAULT NULL,
           user_id INT  NOT NULL,
           comment TEXT  NOT NULL,
-          created_at VARCHAR(255)  NOT NULL,
+          created_at VARCHAR(255)  NOT NULL
         )`;
 
     pool.query(queryText)
