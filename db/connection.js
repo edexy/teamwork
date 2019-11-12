@@ -128,7 +128,7 @@ const createCommentTable = () => {
  * Create All Tables
  */
 const createAllTables = () => {
-    createUserTable();
+    
     createGifTable();
     createArticleTable();
     createCommentTable();
