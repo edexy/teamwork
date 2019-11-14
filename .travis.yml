@@ -2,7 +2,9 @@ language: node_js
 node_js: 
   - "stable"
 services:
-  - postgresql 
+  - postgresql
+env:
+- NODE_ENV=test  
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
