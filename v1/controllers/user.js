@@ -20,6 +20,7 @@ exports.signup = (req, res, next) => {
 
 
             };
+            console.log(data);
 
             // pool.connect((err, client, done) => {
                 let query = 'INSERT INTO users (first_name, last_name, email, password, gender, job_role, department, address, created_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
