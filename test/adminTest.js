@@ -12,7 +12,7 @@ let password = (faker.internet.password()).toLowerCase();
 
 describe('POST /api/auth/create-user', function () {
    
-    it('should be able to create a new user /test since token valid was sent', function (done) {
+    it('should be able to create a new user /test', function (done) {
         request(app)
             .post('/api/v1/auth/create-user')
             .send({
@@ -23,8 +23,7 @@ describe('POST /api/auth/create-user', function () {
                 "gender": 'm',
                 "jobRole": faker.name.jobArea(),
                 "department": 'IT',
-                "address": faker.address.streetAddress(),
-                "userId": "2"
+                "address": faker.address.streetAddress()
             })
             .set('Accept', 'application/json')
             // .set('Authorization', 'Bearer ' + token)
@@ -35,7 +34,7 @@ describe('POST /api/auth/create-user', function () {
 //test user signin after account creation
 describe('POST  /api/v1/auth/signin', function () {
     const authenticatedUser = request.agent(app)
-    it('respond with 200  /test account for just created user ', function (done) {
+    it('respond with 200  / test account for just created user ', function (done) {
         request(app)
         authenticatedUser
             .post('/api/v1/auth/signin')

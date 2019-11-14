@@ -22,9 +22,8 @@ exports.signup = (req, res, next) => {
             };
 
             // pool.connect((err, client, done) => {
-                //let query = 'INSERT INTO users (first_name, last_name, email, password, gender, job_role, department, address, created_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
-                let query = 'INSERT INTO users (first_name, last_name, email) VALUES($1,$2,$3) RETURNING *';
-                let values = [data.firstname, data.lastname, data.email];
+                let query = 'INSERT INTO users (first_name, last_name, email, password, gender, job_role, department, address, created_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
+                let values = [data.firstname, data.lastname, data.email, data.password, data.gender, data.jobrole, data.department, data.address, data.created_at];
                 pool.query(query, values, (error, result) => {
                     // done();
                     if (error) {
