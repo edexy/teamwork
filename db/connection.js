@@ -2,7 +2,6 @@
 // db.js
 const { Pool } = require('pg');
 
-let connectionString = '';
 
 if(process.env.NODE_ENV === 'test'){
     connectionString =  `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
@@ -12,10 +11,6 @@ if(process.env.NODE_ENV === 'test'){
 const pool = new Pool({
     
     connectionString: connectionString
-});
-
-pool.on('connect', () => {
-    console.log('connected to the db');
 });
 
 
