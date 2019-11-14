@@ -28,6 +28,7 @@ exports.signup = (req, res, next) => {
                 pool.query(query, values, (error, result) => {
                     // done();
                     if (error) {
+                        console.log(error);
                         res.status(400).json({ error });
                     } else {
                         const resp = {
