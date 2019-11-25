@@ -1,4 +1,4 @@
-const pool = require('../../db/connection');
+const pool = require('../../db/connection').pool;
 
 
 exports.createArticle = (req, res, next) => {
@@ -108,7 +108,7 @@ exports.deleteArticle = (req, res, next) => {
                 return res.status(400).json({ error });
             }
 
-            return res.status(400).json({
+            return res.status(204).json({
                 status: 'success',
                 message: 'Article Deleted Successfully'
             });
@@ -195,7 +195,7 @@ exports.getOneArticle = (req, res, next) => {
                     let articles = result.rows[0];
                     articles.comments = resp.rows;
 
-                    return res.status(201).json({
+                    return res.status(200).json({
                         status: 'success',
                         data: articles,
 

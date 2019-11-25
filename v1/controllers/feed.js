@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const pool = require('../../db/connection');
+const pool = require('../../db/connection').pool;
 
 
 exports.getFeed = (req, res, next) => {
