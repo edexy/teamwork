@@ -56,7 +56,7 @@ const createGifTable = () => {
           id SERIAL PRIMARY KEY,
           title VARCHAR(255)  NOT NULL,
           url VARCHAR(255)  NOT NULL,
-          public_id VARCHAR(255)  NOT NULL,
+          public_id VARCHAR(255)  NULL,
           user_id VARCHAR(255)  NOT NULL,
           created_at VARCHAR(255)  NOT NULL,
           updated_at VARCHAR(255)   NULL
