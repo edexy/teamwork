@@ -83,7 +83,6 @@ const createArticleTable = () => {
           id SERIAL PRIMARY KEY,
           title VARCHAR(255)  NOT NULL,
           article VARCHAR(255)  NOT NULL,
-          public_id VARCHAR(255)  NOT NULL,
           user_id VARCHAR(255)  NOT NULL,
           created_at VARCHAR(255)  NOT NULL,
           updated_at VARCHAR(255)   NULL
