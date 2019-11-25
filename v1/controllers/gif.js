@@ -1,4 +1,4 @@
-const pool = require('../../db/connection');
+const pool = require('../../db/connection').pool;
 
 const cloudinary = require("cloudinary").v2;
 
@@ -27,7 +27,7 @@ exports.createGif = (req, res, next) => {
                 client.query(query, values, (error, result) => {
                     done();
                     if (error) {
-                        res.status(400).json({ error });
+                       return res.status(400).json({ error });
                     } else {
                         const resp = {
                             message: 'User Gif successfully created',
@@ -41,7 +41,7 @@ exports.createGif = (req, res, next) => {
 
                         return res.status(201).json({
                             status: 'success',
-                            data: resp,
+                            data: resp
 
 
                         });
@@ -52,7 +52,8 @@ exports.createGif = (req, res, next) => {
         })
         .catch(function (err) {
             if (err) {
-                res.status(500).json({
+                console.log(err);
+               return res.status(500).json({
                     message: 'Internal Server Error'
                 });
             }
@@ -66,7 +67,7 @@ exports.createComment = (req, res, next) => {
 
     const data = {
         comment: req.body.comment,
-        article_id: req.params._id,
+        gif_id: req.params._id,
         user_id: req.body.userId,
         created_at: new Date()
     };
@@ -75,7 +76,7 @@ exports.createComment = (req, res, next) => {
     //save the article details to db 
     pool.connect((err, client, done) => {
         let query = 'INSERT INTO comments (comment, gif_id, user_id, created_at) VALUES($1,$2,$3,$4) RETURNING *';
-        let values = [data.comment, data.article_id, data.user_id, data.created_at];
+        let values = [data.comment, data.gif_id, data.user_id, data.created_at];
         client.query(query, values).then((result) => {
             done();
             client
@@ -118,7 +119,7 @@ exports.getOneGif = (req, res, next) => {
                     let gifs = result.rows[0];
                     gifs.comments = resp.rows;
 
-                    return res.status(201).json({
+                    return res.status(200).json({
                         status: 'success',
                         data: gifs,
 
@@ -155,7 +156,7 @@ exports.deleteGif = (req, res, next) => {
 
             cloudinary.uploader.destroy(result.rows[0].public_id)
             .then(result => {
-                return res.status(404).json({
+                return res.status(204).json({
                     status: result,
                     message: 'Gif Deleted Successfully'
                 });
