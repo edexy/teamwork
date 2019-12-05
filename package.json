@@ -4,7 +4,8 @@
   "description": "Teamwork is an internal social network for employees of an organization.",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "mocha": "^6.2.2",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
     "supertest": "^4.0.2"
   }
 }
